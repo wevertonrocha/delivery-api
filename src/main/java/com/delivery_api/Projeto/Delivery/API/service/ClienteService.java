@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,21 +22,25 @@ public class ClienteService {
     /**
      * Cadastrar novo cliente
      */
-    public Cliente cadastrar(ClienteRequestDTO cliente) {
+    public Cliente cadastrar(ClienteRequestDTO clienteDTO) {
         // Validar email único
-        if (clienteRepository.existsByEmail(cliente.getEmail())) {
-            throw new IllegalArgumentException("Email já cadastrado: " + cliente.getEmail());
+        if (clienteRepository.existsByEmail(clienteDTO.getEmail())) {
+            throw new IllegalArgumentException("Email já cadastrado: " + clienteDTO.getEmail());
         }
 
         // Validações de negócio
-        validarDadosCliente(cliente);
+        validarDadosCliente(clienteDTO);
 
-        // Definir como ativo por padrão
+        // Criar entidade Cliente a partir do DTO
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setEmail(clienteDTO.getEmail());
+        cliente.setTelefone(clienteDTO.getTelefone());
+        cliente.setEndereco(clienteDTO.getEndereco());
+        cliente.setDataCadastro(LocalDateTime.now());
         cliente.setAtivo(true);
 
-        // Salvar
-
-
+        // Salvar entidade
         return clienteRepository.save(cliente);
     }
 
