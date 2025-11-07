@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/src/main/java/com/delivery_api/Projeto/Delivery/API/dto/RestuaranteRequestDTO.java">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/java/com/delivery_api/Projeto/Delivery/API/dto/RestuaranteRequestDTO.java" />
+              <option name="originalContent" value="package com.delivery_api.Projeto.Delivery.API.dto;&#10;&#10;// Classe de compatibilidade em razão de um nome com typo usado anteriormente.&#10;// Mantém compatibilidade caso algum lugar importe o nome com erro.&#10;public class RestuaranteRequestDTO extends RestauranteRequestDTO {&#10;    // Sem conteúdo adicional; herda validações e campos de RestauranteRequestDTO&#10;}&#10;" />
+              <option name="updatedContent" value="package com.delivery_api.Projeto.Delivery.API.dto;&#10;&#10;// The previous compatibility class `RestuaranteRequestDTO` was removed to enforce the correct name&#10;// `RestauranteRequestDTO`. If you want to delete this file from disk, you can remove it from the repository." />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

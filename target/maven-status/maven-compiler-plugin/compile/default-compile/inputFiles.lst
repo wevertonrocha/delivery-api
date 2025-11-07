@@ -9,14 +9,15 @@ C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Pr
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\PedidoResponseDTO.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\ProdutoRequestDTO.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\ProdutoResponseDTO.java
+C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\RestauranteRequestDTO.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\RestauranteResponseDTO.java
-C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\dto\RestuaranteRequestDTO.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\entity\Cliente.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\entity\Pedido.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\entity\Produto.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\entity\Restaurante.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\mapper\PedidoMapper.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\mapper\ProdutoMapper.java
+C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\mapper\RestauranteMapper.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\ProjetoDeliveryApiApplication.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\repository\ClienteRepository.java
 C:\Users\Weverton\Desktop\projeto\delivery-api\src\main\java\com\delivery_api\Projeto\Delivery\API\repository\PedidoRepository.java

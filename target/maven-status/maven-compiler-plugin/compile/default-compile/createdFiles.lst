@@ -1,6 +1,6 @@
 com\delivery_api\Projeto\Delivery\API\entity\Pedido.class
 com\delivery_api\Projeto\Delivery\API\dto\ClienteRequestDTO.class
-com\delivery_api\Projeto\Delivery\API\dto\RestuaranteRequestDTO.class
+com\delivery_api\Projeto\Delivery\API\mapper\RestauranteMapperImpl.class
 com\delivery_api\Projeto\Delivery\API\dto\PedidoRequestDTO.class
 com\delivery_api\Projeto\Delivery\API\entity\Cliente.class
 com\delivery_api\Projeto\Delivery\API\entity\Produto.class
@@ -19,11 +19,13 @@ com\delivery_api\Projeto\Delivery\API\repository\ClienteRepository.class
 com\delivery_api\Projeto\Delivery\API\dto\ProdutoRequestDTO.class
 com\delivery_api\Projeto\Delivery\API\entity\Restaurante.class
 com\delivery_api\Projeto\Delivery\API\mapper\ProdutoMapper.class
+com\delivery_api\Projeto\Delivery\API\mapper\RestauranteMapper.class
 com\delivery_api\Projeto\Delivery\API\dto\ClienteResponseDTO.class
 com\delivery_api\Projeto\Delivery\API\mapper\ProdutoMapperImpl.class
 com\delivery_api\Projeto\Delivery\API\controller\HealthController.class
 com\delivery_api\Projeto\Delivery\API\mapper\PedidoMapper.class
 com\delivery_api\Projeto\Delivery\API\service\ClienteService.class
+com\delivery_api\Projeto\Delivery\API\dto\RestauranteRequestDTO.class
 com\delivery_api\Projeto\Delivery\API\repository\ProdutoRepository.class
 com\delivery_api\Projeto\Delivery\API\controller\ClienteController.class
 com\delivery_api\Projeto\Delivery\API\service\ProdutoService.class

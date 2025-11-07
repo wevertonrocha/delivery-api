@@ -1,14 +1,17 @@
 package com.delivery_api.Projeto.Delivery.API.service;
 
+import com.delivery_api.Projeto.Delivery.API.dto.RestauranteRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.RestauranteResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Restaurante;
+import com.delivery_api.Projeto.Delivery.API.mapper.RestauranteMapper;
 import com.delivery_api.Projeto.Delivery.API.repository.RestauranteRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 // O nome da classe foi alterado de ClienteService para RestauranteService
 @Service
@@ -19,70 +22,75 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
+    private final RestauranteMapper restauranteMapper;
+
+    @Autowired
+    public RestauranteService(RestauranteMapper restauranteMapper) {
+        this.restauranteMapper = restauranteMapper;
+    }
+
     /**
-     * Cadastrar novo restaurante
+     * Cadastrar novo restaurante (DTO)
      */
-    public Restaurante cadastrar(Restaurante restaurante) {
-        // Validação de CNPJ único (pressupondo que Restaurante tem um CNPJ)
+    public RestauranteResponseDTO cadastrar(RestauranteRequestDTO dto) {
+        Restaurante restaurante = restauranteMapper.toEntity(dto);
+
+        // Validação de CNPJ único
         if (restauranteRepository.existsByCnpj(restaurante.getCnpj())) {
             throw new IllegalArgumentException("CNPJ já cadastrado: " + restaurante.getCnpj());
         }
 
-        // Validações de negócio
         validarDadosRestaurante(restaurante);
-
-        // Definir como ativo por padrão
         restaurante.setAtivo(true);
 
-        return restauranteRepository.save(restaurante);
+        Restaurante salvo = restauranteRepository.save(restaurante);
+        return restauranteMapper.toResponse(salvo);
     }
 
     /**
-     * Buscar restaurante por ID
+     * Buscar restaurante por ID (DTO)
      */
     @Transactional(readOnly = true)
-    public Optional<Restaurante> buscarPorId(Long id) {
-        return restauranteRepository.findById(id);
+    public Optional<RestauranteResponseDTO> buscarPorIdDTO(Long id) {
+        return restauranteRepository.findById(id).map(restauranteMapper::toResponse);
     }
 
     /**
-     * Buscar restaurante por CNPJ
-     * (Alterado de buscarPorEmail para buscarPorCnpj, pois é um identificador mais comum para restaurantes)
+     * Buscar restaurante por CNPJ (DTO)
      */
     @Transactional(readOnly = true)
-    public Optional<Restaurante> buscarPorCnpj(String cnpj) {
-        return restauranteRepository.findByCnpj(cnpj);
+    public Optional<RestauranteResponseDTO> buscarPorCnpjDTO(String cnpj) {
+        return restauranteRepository.findByCnpj(cnpj).map(restauranteMapper::toResponse);
     }
 
     /**
-     * Listar todos os restaurantes ativos
+     * Listar todos os restaurantes ativos (DTO)
      */
     @Transactional(readOnly = true)
-    public List<Restaurante> listarAtivos() {
-        return restauranteRepository.findByAtivoTrue();
+    public List<RestauranteResponseDTO> listarAtivosDTO() {
+        return restauranteRepository.findByAtivoTrue().stream().map(restauranteMapper::toResponse).collect(Collectors.toList());
     }
 
     /**
-     * Atualizar dados do restaurante
+     * Atualizar dados do restaurante (DTO)
      */
-    public Restaurante atualizar(Long id, Restaurante restauranteAtualizado) {
-        Restaurante restaurante = buscarPorId(id)
+    public RestauranteResponseDTO atualizarDTO(Long id, RestauranteRequestDTO dto) {
+        Restaurante restauranteAtual = restauranteRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
 
-        // Verificar se CNPJ não está sendo usado por outro restaurante
-        if (!restaurante.getCnpj().equals(restauranteAtualizado.getCnpj()) &&
-                restauranteRepository.existsByCnpj(restauranteAtualizado.getCnpj())) {
-            throw new IllegalArgumentException("CNPJ já cadastrado: " + restauranteAtualizado.getCnpj());
+        // Se CNPJ for alterado, checar único
+        if (!restauranteAtual.getCnpj().equals(dto.getCnpj()) && restauranteRepository.existsByCnpj(dto.getCnpj())) {
+            throw new IllegalArgumentException("CNPJ já cadastrado: " + dto.getCnpj());
         }
 
-        // Atualizar campos
-        // Assumindo que a entidade Restaurante possui os campos Nome, Cnpj e Endereco
-        restaurante.setNome(restauranteAtualizado.getNome());
-        restaurante.setCnpj(restauranteAtualizado.getCnpj());
-        restaurante.setTelefone(restauranteAtualizado.getTelefone());
-        restaurante.setEndereco(restauranteAtualizado.getEndereco());
+        Restaurante temp = restauranteMapper.toEntity(dto);
+        restauranteAtual.setNome(temp.getNome());
+        restauranteAtual.setCnpj(temp.getCnpj());
+        restauranteAtual.setTelefone(temp.getTelefone());
+        restauranteAtual.setEndereco(temp.getEndereco());
 
-        return restauranteRepository.save(restaurante);
+        Restaurante atualizado = restauranteRepository.save(restauranteAtual);
+        return restauranteMapper.toResponse(atualizado);
     }
 
     /**
@@ -92,17 +100,16 @@ public class RestauranteService {
         Restaurante restaurante = buscarPorId(id)
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
 
-        // Note: Assumindo que a entidade Restaurante tem o método inativar()
         restaurante.inativar();
         restauranteRepository.save(restaurante);
     }
 
     /**
-     * Buscar restaurantes por nome
+     * Buscar restaurantes por nome (DTO)
      */
     @Transactional(readOnly = true)
-    public List<Restaurante> buscarPorNome(String nome) {
-        return restauranteRepository.findByNomeContainingIgnoreCase(nome);
+    public List<RestauranteResponseDTO> buscarPorNomeDTO(String nome) {
+        return restauranteRepository.findByNomeContainingIgnoreCase(nome).stream().map(restauranteMapper::toResponse).collect(Collectors.toList());
     }
 
     /**
@@ -122,5 +129,53 @@ public class RestauranteService {
         }
 
         // Você pode adicionar validações específicas de CNPJ (formato e tamanho) aqui.
+    }
+
+    // Métodos compatíveis que retornam entidade (mantidos para compatibilidade interna)
+    @Transactional(readOnly = true)
+    public Optional<Restaurante> buscarPorId(Long id) {
+        return restauranteRepository.findById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Restaurante> buscarPorCnpj(String cnpj) {
+        return restauranteRepository.findByCnpj(cnpj);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Restaurante> listarAtivos() {
+        return restauranteRepository.findByAtivoTrue();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Restaurante> buscarPorNome(String nome) {
+        return restauranteRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public Restaurante cadastrar(Restaurante restaurante) {
+        if (restauranteRepository.existsByCnpj(restaurante.getCnpj())) {
+            throw new IllegalArgumentException("CNPJ já cadastrado: " + restaurante.getCnpj());
+        }
+
+        validarDadosRestaurante(restaurante);
+        restaurante.setAtivo(true);
+        return restauranteRepository.save(restaurante);
+    }
+
+    public Restaurante atualizar(Long id, Restaurante restauranteAtualizado) {
+        Restaurante restaurante = buscarPorId(id)
+                .orElseThrow(() -> new IllegalArgumentException("Restaurante não encontrado: " + id));
+
+        if (!restaurante.getCnpj().equals(restauranteAtualizado.getCnpj()) &&
+                restauranteRepository.existsByCnpj(restauranteAtualizado.getCnpj())) {
+            throw new IllegalArgumentException("CNPJ já cadastrado: " + restauranteAtualizado.getCnpj());
+        }
+
+        restaurante.setNome(restauranteAtualizado.getNome());
+        restaurante.setCnpj(restauranteAtualizado.getCnpj());
+        restaurante.setTelefone(restauranteAtualizado.getTelefone());
+        restaurante.setEndereco(restauranteAtualizado.getEndereco());
+
+        return restauranteRepository.save(restaurante);
     }
 }
