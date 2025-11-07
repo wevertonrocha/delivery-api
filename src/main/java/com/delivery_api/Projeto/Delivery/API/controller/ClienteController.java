@@ -1,5 +1,6 @@
 package com.delivery_api.Projeto.Delivery.API.controller;
 
+import com.delivery_api.Projeto.Delivery.API.dto.ClienteRequestDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Cliente;
 import com.delivery_api.Projeto.Delivery.API.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ClienteController {
      * Cadastrar novo cliente
      */
     @PostMapping
-    public ResponseEntity<?> cadastrar(@Validated @RequestBody Cliente cliente) {
+    public ResponseEntity<?> cadastrar(@Validated @RequestBody ClienteRequestDTO cliente) {
         try {
             Cliente clienteSalvo = clienteService.cadastrar(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);

@@ -1,5 +1,6 @@
 package com.delivery_api.Projeto.Delivery.API.service;
 
+import com.delivery_api.Projeto.Delivery.API.dto.ClienteRequestDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Cliente;
 import com.delivery_api.Projeto.Delivery.API.repository.ClienteRepository;
 
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class ClienteService {
     /**
      * Cadastrar novo cliente
      */
-    public Cliente cadastrar(Cliente cliente) {
+    public Cliente cadastrar(ClienteRequestDTO cliente) {
         // Validar email único
         if (clienteRepository.existsByEmail(cliente.getEmail())) {
             throw new IllegalArgumentException("Email já cadastrado: " + cliente.getEmail());
@@ -32,6 +32,9 @@ public class ClienteService {
 
         // Definir como ativo por padrão
         cliente.setAtivo(true);
+
+        // Salvar
+
 
         return clienteRepository.save(cliente);
     }
@@ -104,7 +107,7 @@ public class ClienteService {
     /**
      * Validações de negócio
      */
-    private void validarDadosCliente(Cliente cliente) {
+    private void validarDadosCliente(ClienteRequestDTO cliente) {
         if (cliente.getNome() == null || cliente.getNome().trim().isEmpty()) {
             throw new IllegalArgumentException("Nome é obrigatório");
         }
