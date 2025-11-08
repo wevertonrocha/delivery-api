@@ -1,4 +1,4 @@
-package com.delivery_api.Projeto.Delivery.API.model;
+package com.delivery_api.Projeto.Delivery.API.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
