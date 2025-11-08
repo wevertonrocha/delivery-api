@@ -1,6 +1,6 @@
 package com.delivery_api.Projeto.Delivery.API.service;
 
-import com.delivery_api.Projeto.Delivery.API.dto.PedidoRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.PedidoRequestDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Pedido;
 import com.delivery_api.Projeto.Delivery.API.mapper.PedidoMapper;
 import com.delivery_api.Projeto.Delivery.API.repository.PedidoRepository;

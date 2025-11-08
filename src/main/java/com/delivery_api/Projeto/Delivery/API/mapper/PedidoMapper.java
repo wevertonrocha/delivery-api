@@ -1,7 +1,7 @@
 package com.delivery_api.Projeto.Delivery.API.mapper;
 
-import com.delivery_api.Projeto.Delivery.API.dto.PedidoRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.PedidoResponseDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.PedidoRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.PedidoResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Cliente;
 import com.delivery_api.Projeto.Delivery.API.entity.Pedido;
 import com.delivery_api.Projeto.Delivery.API.entity.Restaurante;

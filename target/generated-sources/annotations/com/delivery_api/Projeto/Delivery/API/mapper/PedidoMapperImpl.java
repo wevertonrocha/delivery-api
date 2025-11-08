@@ -1,7 +1,7 @@
 package com.delivery_api.Projeto.Delivery.API.mapper;
 
-import com.delivery_api.Projeto.Delivery.API.dto.PedidoRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.PedidoResponseDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.PedidoRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.PedidoResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Cliente;
 import com.delivery_api.Projeto.Delivery.API.entity.Pedido;
 import com.delivery_api.Projeto.Delivery.API.entity.Restaurante;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-06T22:54:20-0300",
+    date = "2025-11-07T20:24:44-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Oracle Corporation)"
 )
 @Component

@@ -1,4 +1,4 @@
-package com.delivery_api.Projeto.Delivery.API.dto;
+package com.delivery_api.Projeto.Delivery.API.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

@@ -1,18 +1,12 @@
-package com.delivery_api.Projeto.Delivery.API.entity;
+package com.delivery_api.Projeto.Delivery.API.model;
 
-import jakarta.persistence.*; // Note: Usamos jakarta.persistence para Spring Boot 3+
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-// Anotações do Lombok para gerar Getters, Setters, Construtores
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
-// Anotações da JPA
 @Entity
 @Table(name = "restaurantes")
 public class Restaurante {
@@ -21,25 +15,60 @@ public class Restaurante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Assumimos que 'nome' e 'cnpj' são campos obrigatórios
-    @Column(nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
-    private String cnpj; // Chave única para validação no service
+    @Column(name = "cnpj", nullable = false, unique = true, length = 20)
+    private String cnpj;
 
-    private String telefone;
+    @Column(name = "ativo", nullable = false)
+    private Boolean ativo = true;
 
-    private String endereco;
+    @Column(name = "avaliacao")
+    private Double avaliacao;
 
-    // Atributo 'ativo' para soft delete (inativação)
-    @Column(nullable = false)
-    private boolean ativo;
+    public Restaurante() {}
 
-    /**
-     * Método auxiliar para inativar o restaurante (soft delete)
-     */
-    public void inativar() {
-        this.ativo = false;
+    public Restaurante(String nome, String cnpj, Boolean ativo, Double avaliacao) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.ativo = ativo;
+        this.avaliacao = avaliacao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    public Double getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Double avaliacao) {
+        this.avaliacao = avaliacao;
     }
 }

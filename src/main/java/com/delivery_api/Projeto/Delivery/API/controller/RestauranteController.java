@@ -1,7 +1,7 @@
 package com.delivery_api.Projeto.Delivery.API.controller;
 
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteResponseDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.RestauranteRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.RestauranteResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.service.RestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

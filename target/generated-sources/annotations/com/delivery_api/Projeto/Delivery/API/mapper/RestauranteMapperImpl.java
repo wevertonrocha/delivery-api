@@ -1,14 +1,14 @@
 package com.delivery_api.Projeto.Delivery.API.mapper;
 
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteResponseDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.RestauranteRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.RestauranteResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Restaurante;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-06T22:54:19-0300",
+    date = "2025-11-07T20:24:42-0300",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Oracle Corporation)"
 )
 @Component

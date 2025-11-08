@@ -1,7 +1,7 @@
 package com.delivery_api.Projeto.Delivery.API.mapper;
 
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.RestauranteResponseDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.request.RestauranteRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.RestauranteResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.entity.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

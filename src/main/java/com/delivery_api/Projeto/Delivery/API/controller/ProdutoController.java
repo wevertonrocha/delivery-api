@@ -1,8 +1,7 @@
 package com.delivery_api.Projeto.Delivery.API.controller;
 
-import com.delivery_api.Projeto.Delivery.API.dto.ProdutoRequestDTO;
-import com.delivery_api.Projeto.Delivery.API.dto.ProdutoResponseDTO;
-import com.delivery_api.Projeto.Delivery.API.entity.Produto;
+import com.delivery_api.Projeto.Delivery.API.dto.request.ProdutoRequestDTO;
+import com.delivery_api.Projeto.Delivery.API.dto.response.ProdutoResponseDTO;
 import com.delivery_api.Projeto.Delivery.API.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
